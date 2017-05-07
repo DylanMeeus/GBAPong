@@ -5,7 +5,7 @@
 
 #define CYAN 0x339c8
 #define BLACK 0x00000
-
+#define WHITE 0xffffff
 
 typedef unsigned char   uint8;
 typedef unsigned short  uint16;
