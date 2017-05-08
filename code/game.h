@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <stdbool.h>
+#include "ball.h"
 #include "gba.h"
 #include "colour.h"
 #include "drawing.h"

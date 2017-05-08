@@ -10,7 +10,6 @@ void createPaddle(Paddle* paddle, int x, int y, int h, int w){
 }
 
 void renderPaddle(Paddle* paddle){
-
     int oldY = paddle->oldY;
     if(oldY != 0){
         int newY = paddle->y;
@@ -27,11 +26,15 @@ void renderPaddle(Paddle* paddle){
 }
 
 void paddleUp(Paddle* paddle){
-    paddle->y -= 1;
+    if(paddle->y > 0){
+        paddle->y -= 1;
+    }
 }
 
 void paddleDown(Paddle* paddle){
-    paddle->y += 1;
+    if((paddle->y + paddle->height) < SCREEN_HEIGHT){
+        paddle->y += 1;
+    }
 }
 
 void  paddleBotMove(Paddle* paddle){

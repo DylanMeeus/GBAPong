@@ -4,7 +4,7 @@
 
 Paddle bot; // the bot-player
 Player player;
-
+Ball ball;
 
 bool started = false;
 
@@ -23,7 +23,10 @@ void updateState(){
     if(started){
         key_poll();
         handleGameInput();
+
         paddleBotMove(&bot);
+        moveBall(&ball);
+        checkBallCollision(&ball,&bot,&player);
     } else {
         initGame();
         started = true;
@@ -37,11 +40,13 @@ void updateState(){
 void initGame(){
     createPaddle(&bot,200,10,25,10);
     createPlayer(&player, 20,10,25,10);
+    createBall(&ball,50,50,10,10);
 }
 
 void draw(){
     renderPaddle(&bot);
     renderPlayer(&player);
+    renderBall(&ball);
 }
 
 void handleGameInput()
