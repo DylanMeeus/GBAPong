@@ -1,7 +1,7 @@
 #include "gba.h"
 #include "colour.h"
 #include "drawing.h"
-
+#include "game.h"
 
 // type defintions
 typedef unsigned char      uint8;
@@ -31,16 +31,7 @@ int main()
     while(1)
 	{
         vsync();
-        if ( x > SCREEN_WIDTH * (SCREEN_HEIGHT/10)) {
-         x = 0;
-        }
-        if (x != 0)
-        {
-            int last = x - 10;
-          //  drawRectangle(last % SCREEN_WIDTH, (last / SCREEN_WIDTH) * 10, 10, 10,BLACK);
-        }
-
-        drawRectangle(10,10,10,30,WHITE);
+        tick();
 
 	}
 
