@@ -3,7 +3,8 @@
 
 
 Paddle bot; // the bot-player
-Paddle player;
+Player player;
+
 
 bool started = false;
 
@@ -20,8 +21,9 @@ void tick(){
 void updateState(){
 
     if(started){
+        key_poll();
+        handleGameInput();
         paddleBotMove(&bot);
-        paddleBotMove(&player);
     } else {
         initGame();
         started = true;
@@ -34,10 +36,22 @@ void updateState(){
 */
 void initGame(){
     createPaddle(&bot,200,10,25,10);
-    createPaddle(&player,10,120,25,10);
+    createPlayer(&player, 20,10,25,10);
 }
 
 void draw(){
     renderPaddle(&bot);
-    renderPaddle(&player);
+    renderPlayer(&player);
+}
+
+void handleGameInput()
+{
+    if (key_is_down(KEY_UP))
+    {
+        paddleUp(player.paddle);
+    }
+    else if (key_is_down(KEY_DOWN))
+    {
+        paddleDown(player.paddle);
+    }
 }

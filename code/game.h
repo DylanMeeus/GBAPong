@@ -6,6 +6,8 @@
 #include "colour.h"
 #include "drawing.h"
 #include "paddle.h"
+#include "player.h"
+#include "input.h"
 
 void tick();
 
