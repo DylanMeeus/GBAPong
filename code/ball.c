@@ -8,8 +8,14 @@ void createBall(Ball* ball, int x, int y, int h, int w){
     ball->width = w;
 
     // initial velocity
-    ball->velX = 2;
-    ball->velY = 2;
+    ball->velX = 0;
+    ball->velY = 0;
+}
+
+
+void setBallVelocity(Ball* ball, int velX, int velY){
+    ball->velX = velX;
+    ball->velY = velY;
 }
 
 

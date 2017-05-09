@@ -29,7 +29,7 @@ struct Ball{
 
 };
 
-
+void setBallVelocity(Ball* ball, int velX, int velY);
 void createBall(Ball* ball, int x, int y, int h, int w);
 void renderBall(Ball* ball);
 void moveBall(Ball* ball);
