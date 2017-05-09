@@ -1,13 +1,18 @@
 #include "game.h"
 
 
+typedef unsigned char      uint8;
 
 Paddle bot; // the bot-player
 Player player;
 Ball ball;
 
-bool initialised = false;
 
+
+uint8 botScore = 0;
+uint8 playerScore = 0;
+
+bool initialised = false;
 bool roundStarted = false;
 
 /*
@@ -30,6 +35,7 @@ void updateState(){
             paddleBotMove(&bot);
             moveBall(&ball);
             checkBallCollision(&ball,&bot,&player);
+            checkRoundOver();
         }
     } else {
         initGame();
@@ -42,8 +48,27 @@ void updateState(){
 /*
 * Check the state of the round.
 */
-bool isRoundOver(){
+void checkRoundOver(){
+    // the game is over if there is a collision with the left / right wall.
 
+    if(ball.x <= 0){
+        botScore++;
+        roundStarted = false;
+        resetRound();
+    }
+
+    if(ball.x+ball.width >= SCREEN_WIDTH){
+        playerScore++;
+        roundStarted = false;
+        resetRound();
+    }
+}
+
+/*
+* Set round state to the beginning.
+*/
+void resetRound(){
+    createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,10,10);
 }
 
 /*
