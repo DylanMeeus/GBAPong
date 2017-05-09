@@ -38,7 +38,7 @@ void updateState(){
 * Setup of the game
 */
 void initGame(){
-    createPaddle(&bot,200,10,25,10);
+    createPaddle(&bot,200,10,0,25,10);
     createPlayer(&player, 20,10,25,10);
     createBall(&ball,50,50,10,10);
 }

@@ -19,10 +19,13 @@ struct Paddle{
 
     bool botUp;
 
+    // speed at which the paddle moves up or down
+    int velY;
+
 };
 
 
-void createPaddle(Paddle* paddle, int x, int y, int h, int w);
+void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w);
 void renderPaddle(Paddle* paddle);
 void paddleUp(Paddle* paddle);
 void paddleDown(Paddle* paddle);

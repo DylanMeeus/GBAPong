@@ -1,9 +1,10 @@
 #include "paddle.h"
 
 
-void createPaddle(Paddle* paddle, int x, int y, int h, int w){
+void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w){
     paddle->x = x;
     paddle->y =y;
+    paddle->velY = velY;
     paddle->oldY = y;
     paddle->height = h;
     paddle->width = w;
@@ -27,25 +28,25 @@ void renderPaddle(Paddle* paddle){
 
 void paddleUp(Paddle* paddle){
     if(paddle->y > 0){
-        paddle->y -= 1;
+        paddle->y -= paddle->velY;
     }
 }
 
 void paddleDown(Paddle* paddle){
     if((paddle->y + paddle->height) < SCREEN_HEIGHT){
-        paddle->y += 1;
+        paddle->y += paddle->velY;
     }
 }
 
 void  paddleBotMove(Paddle* paddle){
     if(paddle->botUp){
         paddleUp(paddle);
-        if(paddle->y == 0){
+        if(paddle->y <= 0){
             paddle->botUp = false;
         }
     } else {
         paddleDown(paddle);
-        if((paddle->y+paddle->height) == SCREEN_HEIGHT){
+        if((paddle->y+paddle->height) >= SCREEN_HEIGHT){
             paddle->botUp = true;
         }
     }

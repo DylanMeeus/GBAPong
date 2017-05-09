@@ -9,7 +9,10 @@ void createBall(Ball* ball, int x, int y, int h, int w){
 
     // initial velocity
     ball->velX = 2;
+    ball->velY = 2;
 }
+
+
 void renderBall(Ball* ball){
 
     if(ball->oldX != ball->x || ball->y != ball->oldY){
@@ -23,25 +26,26 @@ void renderBall(Ball* ball){
 
 void moveBall(Ball* ball){
     ball->x += ball->velX;
+    ball->y += ball->velY;
 }
 
 void checkBallCollision(Ball* ball, Paddle* bot, Player* player){
     // check for collision, update the velocity of the ball.
 
     if((ball->x + ball->width) >= SCREEN_WIDTH){
-        ball->velX = -2;
+        reverseVelocityX(ball);
     }
     // bot paddle check
     else if (((ball->x + ball->width) >= bot->x
             && (ball->x + ball->width) <= (bot->x + bot->width))
             && (ball->y + ball->height) >= bot->y
-            && (ball->y + ball->height) <= (bot->y + bot->height)
+            && (ball->y) <= (bot->y + bot->height)
             ){
-        ball->velX = -2;
+        reverseVelocityX(ball);
     }
     // left wall check
     else if(ball->x <= 0){
-        ball->velX = 2;
+        reverseVelocityX(ball);
     }
      // player check
     else if(
@@ -50,7 +54,25 @@ void checkBallCollision(Ball* ball, Paddle* bot, Player* player){
           && ball->y + ball->height >= player->paddle->y
           && (ball->y) < (player->paddle->y + player->paddle->height)
     ){
-        ball-> velX = 2;
+        reverseVelocityX(ball);
     }
 
+
+
+    // check roof collision
+    if((ball->y) <= 0){
+        reverseVelocityY(ball);
+    } else if ((ball->y + ball->height)>= SCREEN_HEIGHT){
+        reverseVelocityY(ball);
+    }
+
+}
+
+
+inline reverseVelocityX(Ball* ball){
+    ball->velX *= -1;
+}
+
+inline reverseVelocityY(Ball* ball){
+    ball->velY *= -1;
 }
