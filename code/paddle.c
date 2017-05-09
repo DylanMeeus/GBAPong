@@ -1,6 +1,8 @@
 #include "paddle.h"
 
 
+#include "ball.h"
+
 void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w){
     paddle->x = x;
     paddle->y =y;
@@ -38,7 +40,8 @@ void paddleDown(Paddle* paddle){
     }
 }
 
-void  paddleBotMove(Paddle* paddle){
+void  paddleBotMove(Paddle* paddle, Ball* ball){
+    int ballX = ball->x;
     if(paddle->botUp){
         paddleUp(paddle);
         if(paddle->y <= 0){

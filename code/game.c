@@ -32,7 +32,7 @@ void updateState(){
         handleGameInput();
 
         if(roundStarted){
-            paddleBotMove(&bot);
+            paddleBotMove(&bot,&ball);
             moveBall(&ball);
             checkBallCollision(&ball,&bot,&player);
             checkRoundOver();

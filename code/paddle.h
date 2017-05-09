@@ -5,6 +5,8 @@
 #include "gba.h"
 #include "colour.h"
 
+typedef struct Ball Ball;
+
 typedef struct Paddle Paddle;
 
 struct Paddle{
@@ -29,6 +31,6 @@ void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w);
 void renderPaddle(Paddle* paddle);
 void paddleUp(Paddle* paddle);
 void paddleDown(Paddle* paddle);
-void paddleBotMove(Paddle* paddle);
+void paddleBotMove(Paddle* paddle, Ball* ball);
 
-#endif PADDLE_H
+#endif
