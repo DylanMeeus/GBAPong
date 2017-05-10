@@ -9,5 +9,8 @@
 #define SCREEN_HEIGHT 160
 #define REG_VCOUNT      (* (volatile uint16*) 0x04000006) // current row being drawn by hardware
 
+#define MEM_VRAM        0x06000000
+#define vid_mem         ((uint16*)MEM_VRAM)
+
 
 #endif

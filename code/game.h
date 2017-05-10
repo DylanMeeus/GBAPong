@@ -10,6 +10,6 @@
 #include "player.h"
 #include "input.h"
 
-void tick();
+void gameTick();
 
 #endif

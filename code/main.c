@@ -2,6 +2,7 @@
 #include "colour.h"
 #include "drawing.h"
 #include "game.h"
+#include "menu.h"
 
 // type defintions
 typedef unsigned char      uint8;
@@ -10,6 +11,7 @@ typedef unsigned int       uint32;
 
 
 
+uint8 gamestate = 0;
 /*
 * Do nothing when in VBlank / HBlank
 */
@@ -23,16 +25,21 @@ int main()
 {
     REG_DISPLAYCONTROL = VIDEO_MODE | BG_MODE; //mode 3 graphics, we aren't actually using bg2 right now
 
-
-    int x = 0;
-
-    int y = 0;
     // game loop
     while(1)
 	{
+	    uint8 oldState = gamestate;
         vsync();
-        tick();
+        if(gamestate == 1){ // in game
+            gameTick();
+        } else{ // in menu
+            menuTick(&gamestate);
+        }
 
+        // our game state changed during a tick, so we wipe the screen
+        if(oldState != gamestate){
+            drawRectangle(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,BLACK);
+        }
 	}
 
     return 0;

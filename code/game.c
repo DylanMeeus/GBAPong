@@ -7,7 +7,9 @@ Paddle bot; // the bot-player
 Player player;
 Ball ball;
 
-
+ballSize = 7;
+paddleHeight = 20;
+paddleWidth = 5;
 
 uint8 botScore = 0;
 uint8 playerScore = 0;
@@ -19,7 +21,7 @@ bool roundStarted = false;
 * One tick in the game.
 * Progress game state, and draw
 */
-void tick(){
+void gameTick(){
     updateState();
     draw();
 }
@@ -68,17 +70,17 @@ void checkRoundOver(){
 * Set round state to the beginning.
 */
 void resetRound(){
-    createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,10,10);
+    createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,ballSize,ballSize);
 }
 
 /*
 * Setup of the game
 */
 void initGame(){
-    createPaddle(&bot,200,10,2,25,10);
-    createPlayer(&player, 20,10,25,10);
+    createPaddle(&bot,SCREEN_WIDTH - paddleWidth - 10,((SCREEN_HEIGHT >> 1) - (paddleHeight>>1)),2,paddleHeight,paddleWidth);
+    createPlayer(&player, 10,((SCREEN_HEIGHT >> 1) - (paddleHeight>>1)),paddleHeight,paddleWidth);
     // setup ball in the middle of the screen.
-    createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,10,10);
+    createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,ballSize,ballSize);
 }
 
 void draw(){
