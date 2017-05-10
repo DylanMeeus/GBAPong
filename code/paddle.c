@@ -40,17 +40,14 @@ void paddleDown(Paddle* paddle){
     }
 }
 
-void  paddleBotMove(Paddle* paddle, Ball* ball){
-    int ballX = ball->x;
-    if(paddle->botUp){
-        paddleUp(paddle);
-        if(paddle->y <= 0){
-            paddle->botUp = false;
-        }
-    } else {
+void paddleBotMove(Paddle* paddle, Ball* ball){
+    // move the center paddle relative to the ball.
+
+    if(ball->y > (paddle->y+(paddle->height>>1))){
         paddleDown(paddle);
-        if((paddle->y+paddle->height) >= SCREEN_HEIGHT){
-            paddle->botUp = true;
-        }
+    } else if (ball->y < paddle->y+(paddle->height>>1)){
+       paddleUp(paddle);
+    } else {
+        // don't move
     }
 }

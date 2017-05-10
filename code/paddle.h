@@ -18,9 +18,6 @@ struct Paddle{
 
     // for painting purposes
     int oldY;
-
-    bool botUp;
-
     // speed at which the paddle moves up or down
     int velY;
 
