@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include "text.h"
 
 typedef unsigned char      uint8;
 
@@ -70,6 +71,8 @@ void checkRoundOver(){
 * Set round state to the beginning.
 */
 void resetRound(){
+    // reset the area!
+    drawRectangle(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,BLACK);
     createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,ballSize,ballSize);
 }
 
@@ -83,10 +86,33 @@ void initGame(){
     createBall(&ball,SCREEN_WIDTH >> 1,SCREEN_HEIGHT >> 1,ballSize,ballSize);
 }
 
+
+/*
+* Draw elements on the screen, the order of the renderer decides what will be 'on top'
+*/
 void draw(){
+    renderLine();
     renderPaddle(&bot);
     renderPlayer(&player);
     renderBall(&ball);
+    renderScore();
+}
+
+void renderLine(){
+
+    for(int i = 0; i < SCREEN_HEIGHT; i+=10){
+        drawRectangle(SCREEN_WIDTH>>1,i,2,9,WHITE);
+    }
+
+}
+
+void renderScore(){
+    char playerScoreString[16];
+    char botScoreString[16];
+    sprintf(playerScoreString, "%d", playerScore);
+    sprintf(botScoreString, "%d", botScore);
+    drawString(playerScoreString,WHITE,(SCREEN_WIDTH / 2)-7,5);
+    drawString(botScoreString,WHITE,(SCREEN_WIDTH / 2)+5,5);
 }
 
 void handleGameInput()

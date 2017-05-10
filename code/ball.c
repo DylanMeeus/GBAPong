@@ -35,37 +35,27 @@ void moveBall(Ball* ball){
     ball->y += ball->velY;
 }
 
-void checkBallCollision(Ball* ball, Paddle* bot, Player* player){
-    // check for collision, update the velocity of the ball.
 
-    if((ball->x + ball->width) >= SCREEN_WIDTH){
-        reverseVelocityX(ball);
-    }
+void checkBallCollision(Ball* ball, Paddle* bot, Player* player){
     // bot paddle check
-    else if (((ball->x + ball->width) >= bot->x
+    if (((ball->x + ball->width) >= bot->x
             && (ball->x + ball->width) <= (bot->x + bot->width))
             && (ball->y + ball->height) >= bot->y
             && (ball->y) <= (bot->y + bot->height)
             ){
         reverseVelocityX(ball);
     }
-    // left wall check
-    else if(ball->x <= 0){
-        reverseVelocityX(ball);
-    }
      // player check
-    else if(
+    if(
         (ball->x) <= (player->paddle->x + player->paddle->width)
-          && (ball->x - ball->width) >= (player->paddle->x)
+          && (ball->x) >= (player->paddle->x)
           && ball->y + ball->height >= player->paddle->y
           && (ball->y) < (player->paddle->y + player->paddle->height)
     ){
         reverseVelocityX(ball);
     }
 
-
-
-    // check roof collision
+    // check roof and floor collision
     if((ball->y) <= 0){
         reverseVelocityY(ball);
     } else if ((ball->y + ball->height)>= SCREEN_HEIGHT){
