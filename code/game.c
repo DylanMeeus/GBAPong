@@ -18,11 +18,15 @@ uint8 playerScore = 0;
 bool initialised = false;
 bool roundStarted = false;
 
+uint8 mode = 0; // in mode two, a second player takes control over our bot
+
 /*
 * One tick in the game.
 * Progress game state, and draw
+* Here, gamestate represents gamemode
 */
-void gameTick(){
+void gameTick(uint8* gamemode){
+    mode = *(gamemode);
     updateState();
     draw();
 }
@@ -35,7 +39,9 @@ void updateState(){
         handleGameInput();
 
         if(roundStarted){
-            paddleBotMove(&bot,&ball);
+            if(mode == 1){
+                paddleBotMove(&bot,&ball);
+            }
             moveBall(&ball);
             checkBallCollision(&ball,&bot,&player);
             checkRoundOver();
@@ -136,4 +142,18 @@ void handleGameInput()
     if(key_is_down(KEY_START)){
         // todo: pause the game
     }
+
+
+    // check for input for our user-controller bot
+    if(mode == 2){
+        if (key_is_down(KEY_LEFT))
+        {
+            paddleUp(&bot);
+        }
+        else if (key_is_down(KEY_RIGHT))
+        {
+            paddleDown(&bot);
+        }
+    }
+
 }

@@ -53,7 +53,11 @@ void handleMenuInput(uint8* gamestate){
         }
 
         if(key_is_down(KEY_A)){
-            *(gamestate) = 1;
+            if(cBox.y == 40){
+                *(gamestate) = 1;
+            } else if(cBox.y == 100){
+                *(gamestate) = 2;
+            }
         }
 
         if(key_is_down(KEY_START)){

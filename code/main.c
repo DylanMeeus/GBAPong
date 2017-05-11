@@ -28,12 +28,19 @@ int main()
     // game loop
     while(1)
 	{
-	    uint8 oldState = gamestate;
+
+        REG_SOUNDCNT_H = SND_OUTPUT_RATIO_100 |
+                         DSA_OUTPUT_RATIO_100 |
+                         DSA_OUTPUT_TO_BOTH |
+                         DSA_TIMER0 |
+                         DSA_FIFO_RESET;
+
+        uint8 oldState = gamestate;
         vsync();
-        if(gamestate == 1){ // in game
-            gameTick();
-        } else{ // in menu
+        if(gamestate == 0){ // in menu
             menuTick(&gamestate);
+        } else{  // in game
+            gameTick(&gamestate);
         }
 
         // our game state changed during a tick, so we wipe the screen

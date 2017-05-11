@@ -2,6 +2,9 @@
 
 
 #include "ball.h"
+#include <time.h>
+#include <stdlib.h>
+
 
 void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w){
     paddle->x = x;
@@ -43,6 +46,12 @@ void paddleDown(Paddle* paddle){
 void paddleBotMove(Paddle* paddle, Ball* ball){
     // move the center paddle relative to the ball.
 
+    srand(time(NULL));
+    int r = rand();
+
+
+    // odds of doing the right thing?
+        
     if(ball->y > (paddle->y+(paddle->height>>1))){
         paddleDown(paddle);
     } else if (ball->y < paddle->y+(paddle->height>>1)){
@@ -50,4 +59,5 @@ void paddleBotMove(Paddle* paddle, Ball* ball){
     } else {
         // don't move
     }
+
 }
