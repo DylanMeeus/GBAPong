@@ -3,6 +3,7 @@
 #include "drawing.h"
 #include "game.h"
 #include "menu.h"
+#include "sound.h"
 
 // type defintions
 typedef unsigned char      uint8;
@@ -25,15 +26,11 @@ int main()
 {
     REG_DISPLAYCONTROL = VIDEO_MODE | BG_MODE; //mode 3 graphics, we aren't actually using bg2 right now
 
+
+
     // game loop
     while(1)
 	{
-
-        REG_SOUNDCNT_H = SND_OUTPUT_RATIO_100 |
-                         DSA_OUTPUT_RATIO_100 |
-                         DSA_OUTPUT_TO_BOTH |
-                         DSA_TIMER0 |
-                         DSA_FIFO_RESET;
 
         uint8 oldState = gamestate;
         vsync();

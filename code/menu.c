@@ -4,6 +4,7 @@
 #include "text.h"
 #include "colour.h"
 #include "input.h"
+#include "sound.h"
 
 typedef unsigned char uint8;
 
@@ -40,8 +41,11 @@ void menuDraw(){
 }
 
 void handleMenuInput(uint8* gamestate){
+
     if (key_is_down(KEY_UP))
         {
+              const char pSample[] = {100,200,300,400,500,600};
+              playSound(&pSample);
             // put a black square over our white one
             drawRectangle(cBox.x, cBox.y, cBox.size,cBox.size, BLACK);
             cBox.y = 40; // cBox position = text position / 2
