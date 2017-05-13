@@ -5,7 +5,8 @@
 #include "menu.h"
 #include "sound.h"
 
-// type defintions
+
+// type definitions
 typedef unsigned char      uint8;
 typedef unsigned short     uint16;
 typedef unsigned int       uint32;
@@ -31,7 +32,8 @@ int main()
     // game loop
     while(1)
 	{
-
+        const char pSample[] = {100,200,300,400,500,600};
+        playSound(&pSample);
         uint8 oldState = gamestate;
         vsync();
         if(gamestate == 0){ // in menu

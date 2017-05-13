@@ -1,4 +1,5 @@
 #include "ball.h"
+#include "sound.h"
 
 
 void createBall(Ball* ball, int x, int y, int h, int w){
@@ -67,6 +68,8 @@ void checkBallCollision(Ball* ball, Paddle* bot, Player* player){
 
 inline reverseVelocityX(Ball* ball){
     ball->velX *= -1;
+    // when the X axis changes, this implies a paddle is hit. Play the hit sound.
+    enableSound(true);
 }
 
 inline reverseVelocityY(Ball* ball){

@@ -2,6 +2,7 @@
 
 #include "text.h"
 
+
 typedef unsigned char      uint8;
 
 Paddle bot; // the bot-player

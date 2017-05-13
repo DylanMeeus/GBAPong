@@ -1,6 +1,8 @@
 #ifndef SOUND_H
 #define SOUND_H
 
+#include <stdbool.h>
+
 typedef unsigned char   uint8;
 typedef unsigned short  uint16;
 typedef unsigned int       uint32;
@@ -45,6 +47,6 @@ typedef unsigned int       uint32;
 
 
 void playSound(signed char* input);
-
+void enableSound(bool enable);
 
 #endif
