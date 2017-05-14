@@ -16,17 +16,7 @@ void createPaddle(Paddle* paddle, int x, int y, int velY, int h, int w){
 }
 
 void renderPaddle(Paddle* paddle){
-    int oldY = paddle->oldY;
-    if(oldY != 0){
-        int newY = paddle->y;
-        int deltaY = newY - oldY;
-        if(deltaY > 0){
-            drawRectangle(paddle->x, oldY, paddle->width, deltaY, BLACK);
-        } else {
-            drawRectangle(paddle->x, oldY+paddle->height, paddle->width, deltaY*-1, BLACK);
-        }
-
-    }
+    drawRectangle(paddle->x,paddle->oldY,paddle->width,paddle->height,BLACK);
     drawRectangle(paddle->x,paddle->y,paddle->width,paddle->height,WHITE);
     paddle->oldY = paddle->y;
 }
